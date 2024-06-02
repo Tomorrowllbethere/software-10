@@ -1,0 +1,46 @@
+{% extends "quotes/base.html" %}
+
+{% block content %}
+
+    <form method="POST" action="{% url 'quotes:note' %}">
+        {% csrf_token %}
+        <div style="padding: 10px">
+            <label> <p class="line">Select author:</p>
+                <select name="authors" multiple="false" required>
+                    {% for author in authors %}
+                    <option value="{{author.id}}">{{author.fullname}}</option>
+                    {% endfor %}
+            </label>
+            <span>{{ form.errors.name }}</span>
+        </div>
+
+        <div class="container-quote">
+            {% csrf_token %}
+
+            <label> <p class="line">Quote</p>
+                {{ form.quote }}
+            </label>
+            <span>{{ form.errors.quote }}</span>
+        </div>
+
+        <div style="padding: 10px">
+            <label> <p class="line">Select tags:</p>
+                <select name="tags" multiple="multiple">
+                    {% for tag in tags %}
+                    <option value="{{tag.id}}">{{tag.tag}}</option>
+                    {% endfor %}
+                </select>
+            </label>
+        </div>
+    <div style="padding: 10px">
+            <label> <p class="line">Add new tags (comma separated):</p>
+                <input type="text" name="new_tags" placeholder="Enter new tags">
+            </label>
+        </div>
+        <div class="grid">
+            <button class="but" type="submit">Save</button>
+            <button class="but" type="reset" class="secondary">Reset</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

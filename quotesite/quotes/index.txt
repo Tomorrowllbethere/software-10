@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Organizer</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"/>
+</head>
+<body>
+<main class="container">
+
+
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        {% if user.is_authenticated %}
+            <ul>
+                <li><a href="{% url 'quotes:note' %}" role="button">Add quote</a></li>
+                
+                <li><a href="{% url 'quotes:author' %}" role="button">Add author(not implement)</a></li>
+            </ul>
+            <ul>
+                <li>Welcome <b>{{ user.username }}!</b></li>
+                <li><a href="{% url 'users:profile' %}" role="button">Profile</a></li>
+                <li><a href="{% url 'users:logout' %}" role="button">Logout</a></li>
+            </ul>
+        {% else %}
+            <ul>
+                <li><a href="{% url 'users:signup' %}" role="button">Sign Up</a></li>
+                <li><a href="{% url 'users:login' %}" role="button">Login</a></li>
+            </ul>
+        {% endif %}
+    </nav>
+
+    {% for quote in quotes %}
+        <ul>
+            <li>
+                
+                    <p role="button" class="outline"> {{ quote.quote }} </p>
+                    
+                    <a href="{% url 'quotes:detail' quote.author.id %}" role="button" class="outline"> {{ quote.author.fullname }} </a>
+                   <div>
+                    <p>Tags:</p>
+                    {% for tag in quote.tags.all %}                    
+                    <a href="{% url 'quotes:extract_tag' tag.id %}" role="button" class="outline"> {{ tag.tag }} </a>
+                    {% endfor %}
+                    </div>
+            </li>
+        </ul>
+    {% endfor %}
+</main>
+</body>
+</html>
+

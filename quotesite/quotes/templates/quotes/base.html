@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Note information</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css" />
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'quotes/style.css' %}">
+    <style>
+        body{
+            font-family:  'Gill Sans MT', sans-serif;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);  ;
+
+        }
+        .container-main{
+            background-color: rgba(48, 162, 238, 0.813);
+
+            
+        }
+        .main{
+            
+            padding-left: 450px;
+            padding-right: 450px;
+            padding-top: 10px;
+            box-shadow:inset 15 0 0px rgba(57, 57, 57, 0.5);
+        }
+        .container-quote{
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            background-color:rgba(18, 94, 156, 0.518);
+            border: 2px;
+            border-radius: 25px;
+        }
+        .but{
+            background-color: rgba(231, 231, 39, 0.628);
+            color: #101e21;
+            border-radius: 25px;
+            padding-top: 0;
+            padding-bottom: 0;
+
+        }
+        .line{
+            background-color: rgba(231, 231, 39, 0.628);
+            color: #101e21;
+
+        }
+        .quote{
+            background-color: rgba(185, 185, 28, 0.308);
+            padding: 45px;
+            font-size:large;
+            border-radius: 25px;
+
+        }
+        .nav-button{
+            background-color:rgba(9, 65, 110, 0.518);
+            border-color:rgba(4, 35, 61, 0.518);
+
+        }
+
+
+    </style>
+</head>
+<body>
+<main class="container">
+    <nav style="margin-bottom: 20px; border-bottom: 2px solid; padding-left: 30px">
+        <ul>
+            <li><a href="/" role="button" class="nav-button" > Go back to the main page </a></li>
+        </ul>
+    </nav>
+    <div class="main">
+    {% block content %} {% endblock %}
+    </div>
+</main>
+</body>
+</html>
